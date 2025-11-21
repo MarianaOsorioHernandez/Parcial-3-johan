@@ -110,47 +110,47 @@ jobs:
 
     env:
       REGISTRY: ghcr.io
-      IMAGE_NAME_PREFIX: ghcr.io/MarianaOsorioHernandez/parcial-3-golang
+      IMAGE_NAME_PREFIX: ghcr.io/marianaosoriohernandez/parcial-3-golang
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Login to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Login to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push create image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./create
-          file: ./create/Dockerfile
-          push: true
-          tags: ${{ env.IMAGE_NAME_PREFIX }}-create:latest
+    - name: Build and push create image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./create
+        file: ./create/Dockerfile
+        push: true
+        tags: ${{ env.IMAGE_NAME_PREFIX }}-create:latest
 
-      - name: Build and push read image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./read
-          file: ./read/Dockerfile
-          push: true
-          tags: ${{ env.IMAGE_NAME_PREFIX }}-read:latest
+    - name: Build and push read image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./read
+        file: ./read/Dockerfile
+        push: true
+        tags: ${{ env.IMAGE_NAME_PREFIX }}-read:latest
 
-      - name: Build and push update image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./update
-          file: ./update/Dockerfile
-          push: true
-          tags: ${{ env.IMAGE_NAME_PREFIX }}-update:latest
+    - name: Build and push update image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./update
+        file: ./update/Dockerfile
+        push: true
+        tags: ${{ env.IMAGE_NAME_PREFIX }}-update:latest
 
-      - name: Build and push delete image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./delete
-          file: ./delete/Dockerfile
-          push: true
-          tags: ${{ env.IMAGE_NAME_PREFIX }}-delete:latest
+    - name: Build and push delete image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./delete
+        file: ./delete/Dockerfile
+        push: true
+        tags: ${{ env.IMAGE_NAME_PREFIX }}-delete:latest
